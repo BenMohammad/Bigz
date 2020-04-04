@@ -13,7 +13,7 @@ import io.reactivex.internal.operators.flowable.FlowableAny;
 public interface TasksDataSource {
 
     Flowable<List<Task>> getTasks();
-    
+
     Flowable<Optional<Task>> getTask(@NonNull String taskId);
     void saveTask(@NonNull Task task);
     void deleteAllTasks();
