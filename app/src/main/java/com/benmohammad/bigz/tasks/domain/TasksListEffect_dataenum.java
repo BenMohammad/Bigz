@@ -8,7 +8,7 @@ import com.spotify.dataenum.dataenum_case;
 @DataEnum
 interface TasksListEffect_dataenum {
 
-    dataenum_case RefreshTask();
+    dataenum_case RefreshTasks();
     dataenum_case LoadTasks();
     dataenum_case SaveTask(Task task);
     dataenum_case DeleteTasks(ImmutableList<Task> tasks);
