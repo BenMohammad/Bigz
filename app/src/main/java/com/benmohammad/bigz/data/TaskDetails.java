@@ -34,7 +34,7 @@ public abstract class TaskDetails {
     }
 
     public static Builder builder() {
-        return new AutoValue_TaskDetails.Builder().completed(false).title("").description("")   ;
+        return new AutoValue_TaskDetails.Builder().completed(false).title("").description("");
     }
 
 

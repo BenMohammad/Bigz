@@ -65,6 +65,7 @@ public class TasksViews implements TasksListViewActions, Connectable<TasksListVi
         mNoTaskView = mRoot.findViewById(R.id.noTasks);
         mNoTaskIcon = mRoot.findViewById(R.id.noTasksIcon);
         mNoTaskMainView = mRoot.findViewById(R.id.noTasksMain);
+        mNoTaskAddView = mRoot.findViewById(R.id.noTasksAdd);
         fab.setImageResource(R.drawable.ic_add);
         mFab = fab;
         mSwipeRefreshLayout = mRoot.findViewById(R.id.refresh_layout);

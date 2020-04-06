@@ -14,12 +14,14 @@ import com.benmohammad.bigz.tasks.domain.TasksListEffect.NavigateToTaskDetails;
 import com.benmohammad.bigz.tasks.domain.TasksListEffect.RefreshTasks;
 import com.benmohammad.bigz.tasks.domain.TasksListEffect.SaveTask;
 import com.benmohammad.bigz.tasks.domain.TasksListEffect.ShowFeedback;
+import com.benmohammad.bigz.tasks.domain.TasksListEffect.StartTaskCreationFlow;
 import com.benmohammad.bigz.tasks.domain.TasksListEvent;
 import com.benmohammad.bigz.tasks.view.TasksListViewActions;
 import com.benmohammad.bigz.util.Either;
 import com.benmohammad.bigz.util.schedulers.BaseSchedulerProvider;
 import com.benmohammad.bigz.util.schedulers.SchedulerProvider;
 import com.google.common.collect.ImmutableList;
+import com.spotify.mobius.rx2.RxMobius;
 
 import java.util.List;
 
@@ -30,6 +32,8 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.Single;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+
+import static io.reactivex.android.schedulers.AndroidSchedulers.mainThread;
 
 public class TasksListEffectHandlers {
 
@@ -42,7 +46,16 @@ public class TasksListEffectHandlers {
         TasksRemoteDataSource remoteSource = TasksRemoteDataSource.getInstance();
         TasksLocalDataSource localSource = TasksLocalDataSource.getInstance(context, SchedulerProvider.getInstance());
 
-        return null;
+        return RxMobius.<TasksListEffect, TasksListEvent>subtypeEffectHandler()
+                .addTransformer(RefreshTasks.class, refreshTaskHandler(remoteSource, localSource))
+                .addTransformer(LoadTasks.class, loadTaskHandler(localSource))
+                .addConsumer(SaveTask.class, saveTaskHandler(remoteSource, localSource))
+                .addConsumer(DeleteTasks.class, deleteTaskHandler(remoteSource, localSource))
+                .addConsumer(ShowFeedback.class, showFeedbackHandler(view), mainThread())
+                .addConsumer(NavigateToTaskDetails.class, navigateToDetailsHandler(showTaskDetails), mainThread())
+                .addAction(StartTaskCreationFlow.class, showAddTask, mainThread())
+                .build();
+
     }
 
     static ObservableTransformer<RefreshTasks, TasksListEvent> refreshTaskHandler(
