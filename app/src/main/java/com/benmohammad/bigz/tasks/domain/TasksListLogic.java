@@ -76,15 +76,15 @@ public final class TasksListLogic {
 
     private static Next<TasksListModel, TasksListEffect> onTaskCompleted(TasksListModel model, TaskMarkedComplete event) {
         int taskIndex = model.findTaskIndexById(event.taskId());
-        if(taskIndex < 0)  new IllegalArgumentException("Task does not exist");
-        Task updatedTask = checkNotNull(model.tasks().get(taskIndex).complete());
+        if(taskIndex < 0)  throw new IllegalArgumentException("Task does not exist");
+        Task updatedTask = checkNotNull(model.tasks()).get(taskIndex).complete();
         return updateTask(updatedTask, model, taskIndex, FeedbackType.MARKED_COMPLETE);
     }
 
     private static Next<TasksListModel, TasksListEffect> onTaskActivated(TasksListModel model, TaskMarkedActive event) {
         int taskIndex = model.findTaskIndexById(event.taskId());
         if(taskIndex < 0) throw new IllegalArgumentException("task does not exist");
-        Task updatedTask = checkNotNull(model.tasks().get(taskIndex).complete());
+        Task updatedTask = checkNotNull(model.tasks()).get(taskIndex).complete();
         return updateTask(updatedTask, model, taskIndex, FeedbackType.MARKED_ACTIVE);
     }
 

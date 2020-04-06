@@ -29,7 +29,7 @@ public abstract class TasksListModel {
         ImmutableList<Task> tasks = checkNotNull(tasks());
         int taskIndex = -1;
         for(int i = 0; i < tasks.size(); i++) {
-            if(tasks.get(i).equals(id)) {
+            if(tasks.get(i).id().equals(id)) {
                 taskIndex = i;
                 break;
             }
@@ -71,9 +71,9 @@ public abstract class TasksListModel {
     }
 
     static void assertIndexWithinBounds(int index, List<?> items) {
-        if(index < 0 || index >= items.size()) {
+        if(index < 0 || index >= items.size())
             throw new IllegalArgumentException("Index out of bounds");
-        }
+
     }
 
     @AutoValue
