@@ -73,6 +73,8 @@ public class TasksViews implements TasksListViewActions, Connectable<TasksListVi
                 ContextCompat.getColor(mRoot.getContext(), R.color.colorPrimary),
                 ContextCompat.getColor(mRoot.getContext(), R.color.colorAccent),
                 ContextCompat.getColor(mRoot.getContext(), R.color.colorPrimaryDark));
+
+        mSwipeRefreshLayout.setScrollUpChild(listView);
     }
 
     public View getRootView() {

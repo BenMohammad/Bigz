@@ -20,7 +20,7 @@ public abstract class Task {
         return withDetails(details().withCompleted(true));
     }
 
-    public Task active() {
+    public Task activate() {
         return withDetails(details().withCompleted(false));
     }
 }

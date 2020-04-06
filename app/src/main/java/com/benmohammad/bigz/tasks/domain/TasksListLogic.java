@@ -84,7 +84,7 @@ public final class TasksListLogic {
     private static Next<TasksListModel, TasksListEffect> onTaskActivated(TasksListModel model, TaskMarkedActive event) {
         int taskIndex = model.findTaskIndexById(event.taskId());
         if(taskIndex < 0) throw new IllegalArgumentException("task does not exist");
-        Task updatedTask = checkNotNull(model.tasks()).get(taskIndex).complete();
+        Task updatedTask = checkNotNull(model.tasks()).get(taskIndex).activate();
         return updateTask(updatedTask, model, taskIndex, FeedbackType.MARKED_ACTIVE);
     }
 

@@ -1,6 +1,5 @@
 package com.benmohammad.bigz.tasks.view;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +67,7 @@ public class TasksAdapter extends BaseAdapter {
 
                     if(!task.completed()) {
                     mItemListener.onCompleteTaskClick(task.id());
+
                     } else {
                         mItemListener.onActivateTaskClick(task.id());
                     }

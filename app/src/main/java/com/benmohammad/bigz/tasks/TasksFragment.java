@@ -110,6 +110,7 @@ public class TasksFragment extends Fragment {
                 break;
             case R.id.menu_refresh:
                 mMenuEvents.onNext(refreshRequested());
+                break;
         }
 
         return true;
@@ -134,6 +135,7 @@ public class TasksFragment extends Fragment {
                             break;
                         default:
                             onFilterSelected(TasksFilterType.ALL_TASKS);
+                            break;
                     }
                     return true;
                 }
