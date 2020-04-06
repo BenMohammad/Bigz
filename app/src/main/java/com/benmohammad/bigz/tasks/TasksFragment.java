@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.benmohammad.bigz.R;
+import com.benmohammad.bigz.addedittask.AddEditTaskActivity;
 import com.benmohammad.bigz.data.Task;
 import com.benmohammad.bigz.tasks.domain.TasksFilterType;
 import com.benmohammad.bigz.tasks.domain.TasksListEvent;
@@ -141,7 +142,7 @@ public class TasksFragment extends Fragment {
     }
 
     public void showAddTask() {
-//        startActivityForResult(AddEditTaskActivity.addTask(getContext()), AddEditTaskActivity.REQUEST_ADD_TASK);
+        startActivityForResult(AddEditTaskActivity.addTask(getContext()), AddEditTaskActivity.REQUEST_ADD_TASK);
     }
 
     public void showTaskDetailsUI(Task task) {
