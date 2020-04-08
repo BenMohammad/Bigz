@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.benmohammad.bigz.R;
 import com.benmohammad.bigz.addedittask.AddEditTaskActivity;
 import com.benmohammad.bigz.data.Task;
+import com.benmohammad.bigz.taskdetails.TaskDetailActivity;
 import com.benmohammad.bigz.tasks.domain.TasksFilterType;
 import com.benmohammad.bigz.tasks.domain.TasksListEvent;
 import com.benmohammad.bigz.tasks.domain.TasksListModel;
@@ -148,6 +149,6 @@ public class TasksFragment extends Fragment {
     }
 
     public void showTaskDetailsUI(Task task) {
-//        startActivity(TaskDetailActivity.showTask(getContext(), task));
+       startActivity(TaskDetailActivity.showTask(getContext(), task));
     }
 }
